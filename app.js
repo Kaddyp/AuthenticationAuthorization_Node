@@ -13,6 +13,10 @@ app.use(cors({
 }));
 //app.use(json());
 
+app.get('/', (req, res)=>{
+    res.send('Server Running on 7500!')
+})
+
 const server = app.listen(7500, ()=>{
     console.log('Server is running on posrt 7500');
 })
