@@ -4,7 +4,7 @@ require('dotenv').config();
 //middleware for token verification: :
 const verifyToken =(req,res,next)=>{
     const token = req.header("Authorization");
-    console.log("==>",token)
+    console.log("kaddy==>",token)
     if(!token) return res.status(401).send("Access denied");
 
     try {

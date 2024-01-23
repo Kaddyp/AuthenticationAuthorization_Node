@@ -1,12 +1,17 @@
 const express = require("express")
+const cors = require("cors");
 require('dotenv').config()
 const connectDB = require("./dbconnection/dbConnection")
 const routeApi = require('./routes/route');
 connectDB();
 const app = express();
-//app.use(cors());
-//app.use(json());
 
+app.use(cors({
+    'origin': '*',
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',   
+    'preflightContinue': false
+}));
+//app.use(json());
 
 const server = app.listen(7500, ()=>{
     console.log('Server is running on posrt 7500');

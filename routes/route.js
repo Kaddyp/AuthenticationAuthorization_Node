@@ -4,7 +4,7 @@ const {protectedRoute} = require('../controllers/protectedRoute')
 const {addRegisterUser, authenticateLoginUser} = require('../controllers/addRegister')
 const { verifyToken } = require('../middleware/verifyToken')
 
-router.get("/protected", verifyToken, protectedRoute)
+router.get("/protectedUser", verifyToken, protectedRoute)
 router.post("/registeruser",addRegisterUser)
 router.post("/loginuser",authenticateLoginUser)
 

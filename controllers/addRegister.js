@@ -32,6 +32,7 @@ const addRegisterUser = (req,res)=>{
 
 const authenticateLoginUser = async(req,res)=>{
     try {
+    console.log(req.body);
     const {email, password} = req.body;
     const user = await registerModel.findOne({email:email}).exec();
     console.log("user-->",user);
@@ -43,7 +44,7 @@ const authenticateLoginUser = async(req,res)=>{
         const result = await bcrypt.compare(password, user.password)
             if(result){
                 const token = jwt.sign({email:user.email}, process.env.SECRET_KEY, {expiresIn: "1h"})
-               
+                console.log("user-->",user);
                 console.log("user._id-->",user._id);
                 await registerModel.updateOne({_id:user._id}, 
                     {
@@ -55,6 +56,7 @@ const authenticateLoginUser = async(req,res)=>{
 
                 res.json({
                     message:"Login successful",
+                    userName: user.fname,
                     tokens:token
                 })
             }
